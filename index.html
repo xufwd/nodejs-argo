@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeFlow | Visual Development Platform</title>
+    <title>DataPulse | 智能数据分析与大屏看板平台</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* 基础样式复位 */
         * {
             margin: 0;
             padding: 0;
@@ -14,16 +16,17 @@
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Noto Sans SC', 'Poppins', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f9fbfd;
+            color: #2d3748;
+            background-color: #f7fafc;
         }
         
         h1, h2, h3, h4 {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
             font-weight: 600;
             line-height: 1.3;
+            color: #1a202c;
         }
         
         .container {
@@ -33,42 +36,44 @@
             padding: 0 20px;
         }
         
-        /* Header & Navigation */
+        /* 导航栏样式 */
         header {
-            background-color: #fff;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
             position: fixed;
             width: 100%;
             z-index: 1000;
+            top: 0;
         }
         
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 18px 0;
         }
         
         .logo {
             display: flex;
             align-items: center;
+            text-decoration: none;
         }
         
         .logo-icon {
-            color: #4361ee;
-            font-size: 28px;
+            color: #0066ff;
+            font-size: 26px;
             margin-right: 10px;
         }
         
         .logo-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
-            color: #333;
+            color: #1a202c;
         }
         
         .logo-text span {
-            color: #4361ee;
+            color: #0066ff;
         }
         
         .nav-links {
@@ -77,97 +82,115 @@
         }
         
         .nav-links li {
-            margin-left: 30px;
+            margin-left: 35px;
         }
         
         .nav-links a {
             text-decoration: none;
-            color: #555;
+            color: #4a5568;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
         
         .nav-links a:hover {
-            color: #4361ee;
+            color: #0066ff;
         }
         
+        /* 按钮设计 */
         .cta-button {
-            background-color: #4361ee;
+            background-color: #0066ff;
             color: white;
             border: none;
-            padding: 12px 28px;
+            padding: 12px 26px;
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: all 0.3s ease;
         }
         
         .cta-button:hover {
-            background-color: #3a56d4;
+            background-color: #0052cc;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.2);
+        }
+        
+        .secondary-button {
+            background-color: white;
+            color: #0066ff;
+            border: 2px solid #0066ff;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-button:hover {
+            background-color: #f0f6ff;
         }
         
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            font-size: 24px;
-            color: #333;
+            font-size: 22px;
+            color: #1a202c;
             cursor: pointer;
         }
+
+        /* 统一标题组件 */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
         
-        /* Hero Section */
+        .section-title h2 {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Hero 视觉区 */
         .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, #f0f4ff 0%, #f9fbfd 100%);
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #f7fafc 100%);
         }
         
         .hero-content {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 40px;
         }
         
         .hero-text {
             flex: 1;
-            padding-right: 40px;
         }
         
         .hero-text h1 {
-            font-size: 48px;
+            font-size: 46px;
             margin-bottom: 20px;
-            color: #222;
+            color: #1a202c;
         }
         
         .hero-text h1 span {
-            color: #4361ee;
+            color: #0066ff;
         }
         
         .hero-text p {
             font-size: 18px;
-            color: #666;
-            margin-bottom: 30px;
-            max-width: 600px;
+            color: #4a5568;
+            margin-bottom: 35px;
         }
         
         .hero-buttons {
             display: flex;
             gap: 15px;
-        }
-        
-        .secondary-button {
-            background-color: white;
-            color: #4361ee;
-            border: 2px solid #4361ee;
-            padding: 12px 28px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .secondary-button:hover {
-            background-color: #f0f4ff;
         }
         
         .hero-image {
@@ -177,28 +200,11 @@
         
         .hero-image img {
             max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.15);
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
         
-        /* Features Section */
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            color: #222;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
+        /* 特性区（Grid 布局） */
         .features {
             padding: 100px 0;
             background-color: white;
@@ -206,262 +212,182 @@
         
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
         
         .feature-card {
-            background: #fff;
-            padding: 30px;
+            padding: 40px 30px;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: #ffffff;
+            border: 1px solid #edf2f7;
+            transition: all 0.3s ease;
         }
         
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            border-color: #0066ff;
         }
         
         .feature-icon {
-            background-color: #eef2ff;
-            color: #4361ee;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
+            background-color: #f0f6ff;
+            color: #0066ff;
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            font-size: 28px;
+            margin-bottom: 25px;
+            font-size: 24px;
         }
         
         .feature-card h3 {
-            font-size: 22px;
+            font-size: 20px;
             margin-bottom: 15px;
         }
         
         .feature-card p {
-            color: #666;
+            color: #4a5568;
+            font-size: 15px;
         }
         
-        /* Benefits Section */
+        /* 核心优势区 */
         .benefits {
             padding: 100px 0;
-            background-color: #f0f4ff;
+            background-color: #f8fafc;
         }
         
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 30px;
         }
         
         .benefit-item {
-            text-align: center;
-            padding: 30px 20px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
         
         .benefit-icon {
-            color: #4361ee;
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-        
-        .benefit-item h3 {
-            font-size: 22px;
+            color: #0066ff;
+            font-size: 36px;
             margin-bottom: 15px;
         }
         
+        .benefit-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
         .benefit-item p {
-            color: #666;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .testimonial {
-            background: #f9fbfd;
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .testimonial-text {
-            font-size: 18px;
-            font-style: italic;
-            margin-bottom: 30px;
-            color: #555;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #ddd;
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #4361ee;
-            font-size: 24px;
-        }
-        
-        .author-info h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-        
-        .author-info p {
-            color: #777;
+            color: #718096;
             font-size: 14px;
         }
         
-        /* Pricing Section */
+        /* 价格方案区 */
         .pricing {
             padding: 100px 0;
-            background-color: #f9fbfd;
+            background-color: white;
         }
         
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            align-items: stretch;
         }
         
         .pricing-card {
-            background: white;
-            border-radius: 10px;
-            padding: 40px 30px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            background: #ffffff;
+            border: 1px solid #edf2f7;
+            border-radius: 12px;
+            padding: 45px 35px;
             text-align: center;
+            position: relative;
             transition: transform 0.3s;
         }
         
         .pricing-card.featured {
-            border-top: 5px solid #4361ee;
-            transform: scale(1.05);
-            position: relative;
+            border: 2px solid #0066ff;
+            transform: scale(1.03);
         }
         
         .featured-badge {
             position: absolute;
-            top: -12px;
+            top: -14px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #4361ee;
+            background-color: #0066ff;
             color: white;
-            padding: 5px 20px;
+            padding: 4px 18px;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
         }
         
-        .pricing-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-10px);
-        }
-        
         .plan-name {
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 15px;
-            color: #333;
         }
         
         .plan-price {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 700;
-            color: #4361ee;
-            margin-bottom: 20px;
+            color: #0066ff;
+            margin-bottom: 25px;
         }
         
         .plan-price span {
-            font-size: 16px;
-            color: #777;
+            font-size: 15px;
+            color: #718096;
         }
         
         .plan-features {
             list-style: none;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            text-align: left;
         }
         
         .plan-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            color: #555;
+            padding: 12px 0;
+            border-bottom: 1px solid #f7fafc;
+            color: #4a5568;
+            font-size: 15px;
         }
         
-        .plan-features li:last-child {
-            border-bottom: none;
+        .plan-features li i {
+            color: #2b6cb0;
+            margin-right: 10px;
         }
         
-        /* CTA Section */
-        .cta-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #4361ee 0%, #3a56d4 100%);
-            text-align: center;
-            color: white;
+        .pricing-card button {
+            width: 100%;
         }
         
-        .cta-section h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .cta-section p {
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-        
-        .cta-section .cta-button {
-            background-color: white;
-            color: #4361ee;
-            font-size: 16px;
-            padding: 15px 40px;
-        }
-        
-        .cta-section .cta-button:hover {
-            background-color: #f0f4ff;
-        }
-        
-        /* Footer */
+        /* 页脚样式 */
         footer {
-            background-color: #222;
-            color: #ccc;
-            padding: 70px 0 20px;
+            background-color: #1a202c;
+            color: #a0aec0;
+            padding: 80px 0 30px;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-column .logo .logo-text {
+            color: white;
         }
         
         .footer-column h3 {
-            font-size: 20px;
+            font-size: 18px;
             color: white;
             margin-bottom: 25px;
         }
@@ -475,45 +401,33 @@
         }
         
         .footer-links a {
-            color: #aaa;
+            color: #a0aec0;
             text-decoration: none;
             transition: color 0.3s;
         }
         
         .footer-links a:hover {
-            color: #4361ee;
+            color: #0066ff;
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #444;
+            padding-top: 25px;
+            border-top: 1px solid #2d3748;
             font-size: 14px;
-            color: #888;
         }
         
-        /* Responsive Design */
+        /* 响应式媒体查询 */
         @media (max-width: 992px) {
             .hero-content {
                 flex-direction: column;
-            }
-            
-            .hero-text {
-                padding-right: 0;
-                margin-bottom: 50px;
                 text-align: center;
             }
-            
-            .hero-text p {
-                margin: 0 auto 30px;
+            .hero-buttons {
+                justify-content: center;
             }
-            
             .pricing-card.featured {
                 transform: none;
-            }
-            
-            .pricing-card.featured:hover {
-                transform: translateY(-10px);
             }
         }
         
@@ -521,446 +435,160 @@
             .nav-links {
                 display: none;
             }
-            
             .mobile-menu-btn {
                 display: block;
             }
-            
             .hero-text h1 {
-                font-size: 36px;
-            }
-            
-            .section-title h2 {
-                font-size: 30px;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-buttons button {
-                width: 100%;
-                max-width: 300px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero {
-                padding: 130px 0 80px;
-            }
-            
-            .features, .benefits, .testimonials, .pricing, .cta-section {
-                padding: 70px 0;
-            }
-            
-            .feature-card, .testimonial {
-                padding: 25px;
-            }
-            
-            .plan-price {
-                font-size: 36px;
+                font-size: 34px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
+
     <header>
         <div class="container">
             <nav>
-                <div class="logo">
-                    <div class="logo-icon"><i class="fas fa-bezier-curve"></i></div>
-                    <div class="logo-text">Code<span>Flow</span></div>
-                </div>
+                <a href="#" class="logo">
+                    <div class="logo-icon"><i class="fas fa-chart-pie"></i></div>
+                    <div class="logo-text">Data<span>Pulse</span></div>
+                </a>
                 
                 <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#benefits">Benefits</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#">Resources</a></li>
+                    <li><a href="#features">功能特性</a></li>
+                    <li><a href="#benefits">核心优势</a></li>
+                    <li><a href="#pricing">价格方案</a></li>
                 </ul>
                 
-                <button class="cta-button">Start Free Trial</button>
+                <button class="cta-button">免费试用</button>
                 <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Build Apps Faster With <span>Visual Development</span></h1>
-                    <p>CodeFlow empowers teams to create enterprise-grade applications with minimal coding. Drag, drop, and connect components to build powerful web and mobile apps in record time.</p>
+                    <h1>用数据驱动决策 <span>洞察业务未来</span></h1>
+                    <p>DataPulse 是一站式企业级数据分析大屏平台。无需技术背景，通过无代码拖拽即可秒级接入多种数据源，快速构建炫酷的企业数字化看板。</p>
                     <div class="hero-buttons">
-                        <button class="cta-button">Start Building Free</button>
-                        <button class="secondary-button">Watch Demo</button>
+                        <button class="cta-button">立即免费构建</button>
+                        <button class="secondary-button">观看演示视频</button>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="CodeFlow Platform Interface">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="DataPulse 仪表盘界面">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
             <div class="section-title">
-                <h2>Powerful Features for Rapid Development</h2>
-                <p>CodeFlow provides all the tools you need to build, deploy, and scale applications without writing extensive code.</p>
+                <h2>全方位、低门槛的数据处理能力</h2>
+                <p>我们提供从数据采集、清洗、计算到最终可视化大屏展示的闭环服务，赋能企业敏捷经营。</p>
             </div>
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-th-large"></i>
-                    </div>
-                    <h3>Visual Builder</h3>
-                    <p>Drag and drop UI components to design responsive interfaces. Connect data sources with simple point-and-click actions.</p>
+                    <div class="feature-icon"><i class="fas fa-magic"></i></div>
+                    <h3>智能拖拽画布</h3>
+                    <p>数百种预设的科技感图表、3D 地图组件。像做 PPT 一样，通过鼠标拖拽与自由布局即可完成炫酷大屏开发。</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Database Integration</h3>
-                    <p>Connect to any data source with built-in connectors. Automatically generate CRUD operations without writing SQL.</p>
+                    <div class="feature-icon"><i class="fas fa-plug"></i></div>
+                    <h3>多源异构整合</h3>
+                    <p>支持 MySQL、Oracle、Excel、API 等数十种主流数据源随连随用，轻松打破企业信息孤岛。</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Cross-Platform</h3>
-                    <p>Build once, deploy everywhere. Generate applications for web, iOS, and Android from a single visual design.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Extensible with Code</h3>
-                    <p>Add custom functionality with JavaScript when needed. Our platform doesn't limit your creativity or complexity.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Enterprise Security</h3>
-                    <p>Built-in authentication, authorization, and data encryption. SOC2 compliant with enterprise-grade security features.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>One-Click Deployment</h3>
-                    <p>Deploy to cloud or on-premises with a single click. Automatic scaling and monitoring included.</p>
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>秒级实时响应</h3>
+                    <p>采用自研的高并发流式计算引擎，亿级海量数据实时刷新无卡顿，保障关键业务即时监控。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
     <section class="benefits" id="benefits">
         <div class="container">
             <div class="section-title">
-                <h2>Why Choose CodeFlow?</h2>
-                <p>Join thousands of companies accelerating their digital transformation with low-code development.</p>
+                <h2>为什么选择 DataPulse？</h2>
+                <p>轻量化的架构和极佳的性价比，助力各行各业实现数字敏捷转型。</p>
             </div>
             
             <div class="benefits-grid">
                 <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>10x Faster Development</h3>
-                    <p>Build applications in days instead of months with visual development tools.</p>
+                    <div class="benefit-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <h3>上线提速 80%</h3>
+                    <p>告别繁琐代码，原本需要数周的前端重度开发，如今一小时即可交付上线。</p>
                 </div>
-                
                 <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h3>Reduce Costs by 70%</h3>
-                    <p>Lower development and maintenance costs with fewer resources required.</p>
+                    <div class="benefit-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <h3>降低 60% 成本</h3>
+                    <p>降低对专业数据分析师与前端研发的依赖，业务人员自服务，省时省力。</p>
                 </div>
-                
                 <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Citizen Developers</h3>
-                    <p>Enable business users to build solutions with minimal IT assistance.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Scale Effortlessly</h3>
-                    <p>From prototype to enterprise-scale applications with the same platform.</p>
+                    <div class="benefit-icon"><i class="fas fa-lock"></i></div>
+                    <h3>私有化本地部署</h3>
+                    <p>支持银行、国企等高安全要求级别。完善的权限精细控制，全面护航数据资产。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Trusted by Industry Leaders</h2>
-                <p>See what our customers have to say about their experience with CodeFlow.</p>
-            </div>
-            
-            <div class="testimonial-slider">
-                <div class="testimonial">
-                    <div class="testimonial-text">
-                        "CodeFlow transformed how we deliver solutions to our business units. What used to take 6 months now takes 3 weeks. Our development team can focus on complex problems while business teams build their own solutions."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SC</div>
-                        <div class="author-info">
-                            <h4>Sarah Chen</h4>
-                            <p>CTO, TechGrowth Inc.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
     <section class="pricing" id="pricing">
         <div class="container">
             <div class="section-title">
-                <h2>Simple, Transparent Pricing</h2>
-                <p>Choose the plan that fits your needs. All plans include core features with no hidden fees.</p>
+                <h2>透明简单的价格体系</h2>
+                <p>支持按需选购。所有付费计划均提供完善的技术指导与售后保障。</p>
             </div>
             
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <h3 class="plan-name">Starter</h3>
-                    <div class="plan-price">$29<span>/month</span></div>
+                    <h3 class="plan-name">基础版</h3>
+                    <div class="plan-price">￥199<span>/月</span></div>
                     <ul class="plan-features">
-                        <li>Up to 5 users</li>
-                        <li>10 GB storage</li>
-                        <li>Basic components</li>
-                        <li>Community support</li>
-                        <li>1 production app</li>
+                        <li><i class="fas fa-check-circle"></i> 支持最大 3 个并发用户</li>
+                        <li><i class="fas fa-check-circle"></i> 5 个核心生产看板</li>
+                        <li><i class="fas fa-check-circle"></i> 基础关系型数据库接入</li>
+                        <li><i class="fas fa-check-circle"></i> 社区邮件支持</li>
                     </ul>
-                    <button class="secondary-button">Get Started</button>
+                    <button class="secondary-button">立即试用</button>
                 </div>
                 
                 <div class="pricing-card featured">
-                    <div class="featured-badge">Most Popular</div>
-                    <h3 class="plan-name">Professional</h3>
-                    <div class="plan-price">$89<span>/month</span></div>
+                    <div class="featured-badge">企业推荐</div>
+                    <h3 class="plan-name">专业版</h3>
+                    <div class="plan-price">￥599<span>/月</span></div>
                     <ul class="plan-features">
-                        <li>Up to 25 users</li>
-                        <li>100 GB storage</li>
-                        <li>All components</li>
-                        <li>Priority support</li>
-                        <li>10 production apps</li>
-                        <li>Custom branding</li>
+                        <li><i class="fas fa-check-circle"></i> 20 个并发协作名额</li>
+                        <li><i class="fas fa-check-circle"></i> 不限量看板创建数量</li>
+                        <li><i class="fas fa-check-circle"></i> 解锁高级 3D 与大屏地图组件</li>
+                        <li><i class="fas fa-check-circle"></i> 7×24 小时专属技术专家</li>
+                        <li><i class="fas fa-check-circle"></i> 自由去水印及个性化品牌配置</li>
                     </ul>
-                    <button class="cta-button">Try Free for 14 Days</button>
-                </div>
-                
-                <div class="pricing-card">
-                    <h3 class="plan-name">Enterprise</h3>
-                    <div class="plan-price">Custom</div>
-                    <ul class="plan-features">
-                        <li>Unlimited users</li>
-                        <li>Unlimited storage</li>
-                        <li>All features included</li>
-                        <li>24/7 dedicated support</li>
-                        <li>Unlimited apps</li>
-                        <li>On-premises option</li>
-                    </ul>
-                    <button class="secondary-button">Contact Sales</button>
+                    <button class="cta-button">免费试用 14 天</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Start Building Today</h2>
-            <p>Join over 10,000 companies that use CodeFlow to accelerate their application development. No credit card required for the free trial.</p>
-            <button class="cta-button">Get Started for Free</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <div class="logo">
-                        <div class="logo-icon"><i class="fas fa-bezier-curve"></i></div>
-                        <div class="logo-text">Code<span>Flow</span></div>
+                        <div class="logo-icon"><i class="fas fa-chart-pie"></i></div>
+                        <div class="logo-text">Data<span>Pulse</span></div>
                     </div>
-                    <p style="margin-top: 20px; color: #aaa;">The leading visual development platform for building enterprise applications with minimal coding.</p>
+                    <p style="margin-top: 15px; font-size: 14px;">用领先的低代码技术，为万千企业赋能数字化转型的未来。</p>
                 </div>
-                
                 <div class="footer-column">
-                    <h3>Product</h3>
+                    <h3>产品服务</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Use Cases</a></li>
-                        <li><a href="#">Integrations</a></li>
-                        <li><a href="#">Roadmap</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Tutorials</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Community</a></li>
-                        <li><a href="#">Support</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 CodeFlow. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            
-            // Adjust for mobile
-            if (window.innerWidth <= 768) {
-                if (navLinks.style.display === 'flex') {
-                    navLinks.style.flexDirection = 'column';
-                    navLinks.style.position = 'absolute';
-                    navLinks.style.top = '80px';
-                    navLinks.style.left = '0';
-                    navLinks.style.width = '100%';
-                    navLinks.style.backgroundColor = 'white';
-                    navLinks.style.padding = '20px';
-                    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-                    
-                    const navItems = document.querySelectorAll('.nav-links li');
-                    navItems.forEach(item => {
-                        item.style.margin = '10px 0';
-                    });
-                }
-            }
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if(window.innerWidth <= 768) {
-                        document.querySelector('.nav-links').style.display = 'none';
-                    }
-                }
-            });
-        });
-        
-        // Simple testimonial slider
-        const testimonials = [
-            {
-                text: "CodeFlow transformed how we deliver solutions to our business units. What used to take 6 months now takes 3 weeks. Our development team can focus on complex problems while business teams build their own solutions.",
-                name: "Sarah Chen",
-                position: "CTO, TechGrowth Inc.",
-                initials: "SC"
-            },
-            {
-                text: "We reduced our app development time by 80% using CodeFlow. The visual interface made it easy for our analysts to build data dashboards without waiting for IT resources.",
-                name: "Marcus Johnson",
-                position: "Director of Operations, DataCorp",
-                initials: "MJ"
-            },
-            {
-                text: "As a non-technical founder, CodeFlow allowed me to build our MVP in just 2 months. I could test ideas quickly and iterate based on user feedback without deep coding knowledge.",
-                name: "Lisa Wang",
-                position: "Founder, StartupLabs",
-                initials: "LW"
-            }
-        ];
-        
-        let currentTestimonial = 0;
-        const testimonialElement = document.querySelector('.testimonial');
-        
-        function rotateTestimonial() {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            updateTestimonial();
-        }
-        
-        function updateTestimonial() {
-            const testimonial = testimonials[currentTestimonial];
-            testimonialElement.innerHTML = `
-                <div class="testimonial-text">"${testimonial.text}"</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">${testimonial.initials}</div>
-                    <div class="author-info">
-                        <h4>${testimonial.name}</h4>
-                        <p>${testimonial.position}</p>
-                    </div>
-                </div>
-            `;
-        }
-        
-        // Auto-rotate testimonials every 5 seconds
-        setInterval(rotateTestimonial, 5000);
-        
-        // CTA button interactions
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function() {
-                alert('Thank you for your interest in CodeFlow! You would be redirected to the signup page in a real implementation.');
-            });
-        });
-        
-        // Pricing card interactions
-        document.querySelectorAll('.pricing-card button').forEach(button => {
-            button.addEventListener('click', function() {
-                const planName = this.closest('.pricing-card').querySelector('.plan-name').textContent;
-                alert(`You selected the ${planName} plan. In a real implementation, you would be redirected to the checkout process.`);
-            });
-        });
-    </script>
-</body>
-</html>
+                        <li><a href="#">核心功能</a></li>
+                        <li><a href="#">大屏模
